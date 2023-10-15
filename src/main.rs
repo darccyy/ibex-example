@@ -16,6 +16,8 @@ fn main() {
         (/post/[i])
             for (i, blog) in blogs.into_iter().enumerate()
             => blog_page(blog),
+        (/test)
+            => test_page(),
     ];
 
     let files = route::render_routes(routes);
@@ -75,4 +77,12 @@ fn header(home_link: bool) -> View {
             ]
         }
     }
+}
+
+fn test_page() -> Document {
+    view! {
+        "Some unicode characters: "
+        "ŝĝŭĉĵĥ"
+    }
+    .into()
 }
