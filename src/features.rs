@@ -9,9 +9,3 @@ macro_rules! url {
         format!("{}{}", root, $path.to_string())
     }};
 }
-/// until `for` works in macro
-macro_rules! foreach {
-    ( $pat:pat in $expr:expr => $($tt:tt)* ) => {
-        ($expr).map(|$pat| view! { $($tt)* }).collect::<Vec<View>>()
-    }
-}

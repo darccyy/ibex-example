@@ -30,7 +30,7 @@ fn index_page(blogs: &[BlogPost]) -> Document {
 
         h2 { "Read blogs posts" }
         ul {
-            [foreach![(i, blog) in blogs.into_iter().enumerate() =>
+            [*for (i, blog) in (blogs.into_iter().enumerate()) {
                 li {
                     a [href=[:?url!(format!("/post/{i}"))]] {
                         b { [&blog.title] }
@@ -38,7 +38,7 @@ fn index_page(blogs: &[BlogPost]) -> Document {
                         i { [&blog.author] }
                     }
                 }
-            ]]
+            }]
         }
     }
     .into()
