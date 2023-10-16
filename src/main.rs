@@ -28,7 +28,7 @@ fn index_page(blogs: &[BlogPost]) -> Document {
     view! {
         @header[false]
 
-        h2 { "Read blogs posts" }
+        h1 { "Read blogs posts" }
         ul {
             [*for (i, blog) in (blogs.into_iter().enumerate()) {
                 li {
@@ -72,17 +72,37 @@ fn header(home_link: bool) -> View {
             [*if (home_link) {
                 small {
                     ~ "-" ~
-                    a [href={url!("/")}] { "Back to home page" } }
+                    a [href={url!("/")}] { "Back to home page" }
                 }
-            ]
+            }]
         }
     }
 }
 
 fn test_page() -> Document {
     view! {
+        @use_red
         "Some unicode characters: "
         "ŝĝŭĉĵĥ"
+        @red { "Bruh" }
     }
     .into()
+}
+
+fn red(children: View) -> View {
+    view! {
+        div [class="color"] {
+            [children]
+        }
+    }
+}
+
+fn use_red() -> View {
+    view! {
+        HEAD {
+            style {
+                ".color { background-color: red; }"
+            }
+        }
+    }
 }
